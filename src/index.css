@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 44% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 44% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 42 87% 55%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 42 87% 55%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 42 87% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 44% 8%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 42 87% 55%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 42 87% 55%;
+
+    /* Custom tokens */
+    --gold: 42 87% 55%;
+    --gold-light: 42 87% 70%;
+    --gold-dark: 42 70% 40%;
+    --navy: 222 47% 6%;
+    --navy-light: 222 44% 14%;
+    --navy-mid: 222 44% 10%;
+    --glass: 222 44% 12%;
+    --glass-border: 222 30% 22%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-xl border;
+    background: hsl(var(--glass) / 0.6);
+    border-color: hsl(var(--glass-border) / 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    border-color: hsl(var(--gold) / 0.4);
+    box-shadow: 0 8px 32px hsl(var(--gold) / 0.1);
+    transform: translateY(-4px);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--navy) / 0.4) 0%,
+      hsl(var(--navy) / 0.7) 50%,
+      hsl(var(--navy) / 0.95) 100%
+    );
+  }
+
+  .search-glow {
+    box-shadow: 0 0 30px hsl(var(--gold) / 0.15), 0 0 60px hsl(var(--gold) / 0.05);
+  }
+
+  .badge-best {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background: linear-gradient(135deg, hsl(42 87% 55%), hsl(42 87% 70%));
+    color: hsl(222 47% 6%);
+  }
+
+  .badge-longest {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background: linear-gradient(135deg, hsl(200 80% 50%), hsl(200 80% 65%));
+    color: hsl(222 47% 6%);
+  }
+
+  .badge-cheapest {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background: linear-gradient(135deg, hsl(150 70% 45%), hsl(150 70% 60%));
+    color: hsl(222 47% 6%);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--navy-light)) 25%,
+      hsl(var(--gold) / 0.1) 50%,
+      hsl(var(--navy-light)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
